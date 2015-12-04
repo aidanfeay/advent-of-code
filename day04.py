@@ -1,15 +1,11 @@
 import hashlib
-import re
 import time
 
 timer = time.time()
-hashVal = hashlib.md5('')
+hashVal = ''
 numVal = 0
-pattern = re.compile('^0{6}')
-while not pattern.match(hashVal.hexdigest()):
+while hashVal[:6] != "000000":
   numVal += 1
-  hashVal = hashlib.md5('yzbqklnj' + str(numVal))
-print numVal, hashVal.hexdigest()
-print time.time() - timer
-
-# this is slow as sin
+  hashVal = hashlib.md5('yzbqklnj' + str(numVal)).hexdigest()
+print numVal, hashVal
+print str(time.time() - timer) + "s"
